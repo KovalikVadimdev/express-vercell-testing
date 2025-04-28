@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const menuRoutes = require("./routes/menu");
 const ordersRoutes = require("./routes/orders");
 const reviewsRoutes = require("./routes/reviews");
 const advantagesRoutes = require("./routes/advantages");
@@ -12,6 +13,7 @@ app.use(express.json());
 
 mongoose.connect(process.env.MONGODB_URI);
 
+app.use("/api/menu", menuRoutes);
 app.use("/api/orders", ordersRoutes);
 app.use("/api/reviews", reviewsRoutes);
 app.use("/api/advantages", advantagesRoutes);
