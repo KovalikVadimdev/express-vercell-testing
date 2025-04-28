@@ -6,6 +6,7 @@ const menuRoutes = require("./routes/menu");
 const ordersRoutes = require("./routes/orders");
 const reviewsRoutes = require("./routes/reviews");
 const advantagesRoutes = require("./routes/advantages");
+const logMiddleware = require("./middleware/logMiddleware");
 const authMiddleware = require("./middleware/authMiddleware");
 require("dotenv").config();
 
@@ -14,6 +15,8 @@ app.use(cors());
 app.use(express.json());
 
 mongoose.connect(process.env.MONGODB_URI);
+
+app.use(logMiddleware);
 
 app.use("/api", authRoutes);
 app.use("/api/menu", menuRoutes);
